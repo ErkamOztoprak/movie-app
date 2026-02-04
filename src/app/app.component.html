@@ -1,10 +1,31 @@
-<h1>Film uygulamasi</h1>
-<app-movie-list></app-movie-list>
-<div class="searc-area">
-    <input #myInput
-    (input)="onSearch(myInput.value)"
-    type="text"
-    class="form-control"
-    placeholder="Film ara...">
-   
+<div class="app-container">
+  <header class="header">
+    <div class="header-content">
+      <h1 class="logo">🎬 Film Arama Motoru</h1>
+      <p class="subtitle">Milyonlarca filmi keşfedin</p>
+    </div>
+  </header>
+
+  <div class="search-section">
+    <div class="search-container">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input #myInput
+          (input)="onSearch(myInput.value)"
+          type="text"
+          class="search-input"
+          placeholder="Film adı yazın... (örn: The Matrix, Inception)">
+      </div>
+      <p class="search-hint">En sevdiğiniz filmleri arayın ve keşfedin</p>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <app-movie-list></app-movie-list>
+  </main>
+
+  <footer class="footer">
+    <p>Film verileri IMDB API'den alınmaktadır</p>
+    <p>© 2026 Film Arama Uygulaması</p>
+  </footer>
 </div>

@@ -1,15 +1,18 @@
-import { Component,signal } from '@angular/core';
+import { Component,signal, OnInit } from '@angular/core';
 import {MovieService} from '../services/movie.service';
 import { Movie } from '../movie.model';
+import { CommonModule } from '@angular/common';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 
 
 @Component({
   selector: 'app-movie-list',
-  standalone: true,
+  imports: [CommonModule],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
-export class MovieListComponent {
+export class MovieListComponent implements OnInit {
 
   constructor(private movieService:MovieService){}
 
@@ -19,6 +22,23 @@ export class MovieListComponent {
   messages=signal<string>('');
   error=signal<string>('');
   
+  
+  ngOnInit() {
+    this.movieService.getSearchTerm()
+      .pipe(
+        debounceTime(500),              
+        distinctUntilChanged()           
+      )
+      .subscribe((term: string) => {
+        if (term && term.trim() !== '') {
+          this.searchMovies(term);
+        } else {
+        
+          this.movies.set([]);
+        }
+      });
+  }
+
   searchMovies(query: string):void{
     if(!query || query.trim()==='')
       return;

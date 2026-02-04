@@ -1,3 +1,28 @@
 <div class="movie-container">
   
+  <div *ngIf="loading()" class="loading">
+    Filmler yükleniyor...
+  </div>
+
+  <div *ngIf="error()" class="error">
+    {{ error() }}
+  </div>
+
+  <div *ngIf="!loading() && movies().length > 0" class="movie-list">
+    <div *ngFor="let movie of movies()" class="movie-card">
+      <img [src]="movie.poster" [alt]="movie.title" class="movie-poster">
+      <div class="movie-info">
+        <h3>{{ movie.title }}</h3>
+        <p>Yıl: {{ movie.year }}</p>
+        <p>Puan: {{ movie.rank }}</p>
+        <p>Oyuncular: {{ movie.actors }}</p>
+        <a [href]="movie.imdb_url" target="_blank">IMDB'de Gör</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading() && movies().length === 0 && !error()" class="no-results">
+    Film arayın...
+  </div>
+  
 </div>

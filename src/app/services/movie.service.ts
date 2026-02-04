@@ -27,6 +27,15 @@ export class MovieService {
     this.searchQuery.set(term);
   }
 
+  
+  changeSearchTerm(term: string) {
+    this.searchTerm.next(term);
+  }
+
+  
+  getSearchTerm(): Observable<string> {
+    return this.searchTerm.asObservable();
+  }
 
   searchMovies(query:string):Observable<Movie[]>{
   return this.http.get<MovieApiResponse>(`${this.apiUrl}?q=${query}`).pipe(map(response=>{
