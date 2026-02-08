@@ -1,14 +1,14 @@
 import { Component,signal, OnInit } from '@angular/core';
 import {MovieService} from '../services/movie.service';
 import { Movie } from '../movie.model';
-import { CommonModule } from '@angular/common';
+
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 
 
 @Component({
   selector: 'app-movie-list',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
