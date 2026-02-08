@@ -14,7 +14,7 @@
 
   @if (!loading() && movies().length > 0) {
     <div class="movie-list">
-      @for (movie of movies(); track movie) {
+      @for (movie of movies(); track movie.imdb_url) {
         <div class="movie-card">
           <img [src]="movie.poster" [alt]="movie.title" class="movie-poster">
           <div class="movie-info">
@@ -22,7 +22,7 @@
             <p>Yıl: {{ movie.year }}</p>
             <p>Puan: {{ movie.rank }}</p>
             <p>Oyuncular: {{ movie.actors }}</p>
-            <a [href]="movie.imdb_url" target="_blank">IMDB'de Gör</a>
+            <a [href]="movie.imdb_url" target="_blank" rel="noopener noreferrer">IMDB'de Gör</a>
           </div>
         </div>
       }

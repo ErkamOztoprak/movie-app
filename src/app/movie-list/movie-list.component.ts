@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-list',
-  imports: [],
+
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
@@ -17,9 +17,7 @@ export class MovieListComponent implements OnInit {
   constructor(private movieService:MovieService){}
 
   movies= signal<Movie[]>([]);
-  searchQuery= signal<string>('');
   loading=signal<boolean>(false);
-  messages=signal<string>('');
   error=signal<string>('');
   
   
@@ -49,7 +47,7 @@ export class MovieListComponent implements OnInit {
       next:(results:Movie[]) => {
         console.log('basarili! film sayisi:',results.length);
         this.movies.set(results);
-        this.loading.set(false);
+
       },
 
       error: (err)=>{
