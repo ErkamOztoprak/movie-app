@@ -11,6 +11,7 @@
       {{ error() }}
     </div>
   }
+ 
 
   @if (!loading() && movies().length > 0) {
     <div class="movie-list">
@@ -30,6 +31,7 @@
   }
 
   @if (!loading() && movies().length === 0 && !error()) {
+    
     <div class="no-results">
       Film arayın...
     </div>

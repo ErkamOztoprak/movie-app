@@ -19,9 +19,11 @@ export class MovieListComponent implements OnInit {
   movies= signal<Movie[]>([]);
   loading=signal<boolean>(false);
   error=signal<string>('');
+  initLoading=signal<boolean>(false);
   
   
   ngOnInit() {
+    this.loadMovies();
     this.movieService.getSearchTerm()
       .pipe(
         debounceTime(500),              
@@ -33,8 +35,26 @@ export class MovieListComponent implements OnInit {
         } else {
         
           this.movies.set([]);
+          this.loadMovies();
         }
       });
+  }
+  loadMovies():void{
+    this.initLoading.set(true);
+    this.error.set('');
+    this.movieService.getdefaultMovies().subscribe({
+      next: (movies: Movie[]) => {
+        this.movies.set(movies);
+        this.initLoading.set(false);
+      
+      },
+      error:(err)=>{
+        this.error.set('filmler yuklenirken hata !');
+        this.initLoading.set(false);
+        console.error('default movies error:',err);
+      }
+    })
+
   }
 
   searchMovies(query: string):void{
@@ -46,10 +66,9 @@ export class MovieListComponent implements OnInit {
     this.movieService.searchMovies(query).subscribe({
       next:(results:Movie[]) => {
         console.log('basarili! film sayisi:',results.length);
+        this.loading.set(false);
         this.movies.set(results);
-
       },
-
       error: (err)=>{
         this.error.set('filmler yuklenirken hata olustu');
         this.loading.set(false);
