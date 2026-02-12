@@ -14,18 +14,18 @@
  
 
   @if (!loading() && movies().length > 0) {
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 ">
       @for (movie of movies(); track movie.imdb_url) {
-        <div class="border-4 border-lime rounded-lg p-1 m-1 
-        hover:border-forest hover:border-opacity-75 hover:-translate-y-1 w-max flex gap-1">
-          <img [src]="movie.poster" [alt]="movie.title" class="w-48 h-auto rounded-lg border-4 border-white">
-          <div class="border-2 border-lilac rounded bg-mint w-48 p-2 font-bold text-forest ">
-            <h3 class="font-extrabold text-2xl pr-2 text-forest text-center m-2 ">{{ movie.title }}</h3>
+        <div class="border-4 border-lime-dark rounded-xl m-0.25 
+        hover:border-forest-dark hover:border-opacity-75 hover:-translate-y-1 w-max flex gap-1 transition">
+          <img [src]="movie.poster" [alt]="movie.title" class="w-56 h-auto rounded-lg border-4 border-mint-dark">
+          <div class="border-2 border-lilac-dark rounded-lg bg-mint w-48 p-2 font-bold text-forest m-0.5">
+            <h3 class="font-extrabold text-2xl pr-2 text-forest-dark text-center m-2 overflow-hidden ">{{ movie.title }}</h3>
             <p class="italic text-center ">Yıl: {{ movie.year }}</p>
             <p class="text-center">Puan: {{ movie.rank }}</p>
-            <p class="pt-2 whitespace-normal font-light p-2 ">Oyuncular: {{ movie.actors }}</p>
+            <p class="pt-2 whitespace-normal font-light-dark p-2 ">Oyuncular: {{ movie.actors }}</p>
             <a [href]="movie.imdb_url" target="_blank" rel="noopener noreferrer" 
-            class="border-2 border-lime rounded  bg-yellow-500 text-black p-2 m-1 hover:bg-opacity-50  ">IMDB'de Gör</a>
+            class="border-2 border-lime-dark rounded  bg-yellow-500 text-black p-2 m-1 hover:bg-opacity-50  ">IMDB'de Gör</a>
           </div>
         </div>
       }
@@ -34,7 +34,7 @@
 
   @if (!loading() && movies().length === 0 && !error()) {
     
-    <div class="border-2 border-lime rounded-lg bg-blue-250 text-center">
+    <div class=" absolute top-0 left-0 border-2 border-lime-dark rounded-lg bg-blue-250 text-center">
       Film arayın...
     </div>
   }
