@@ -1,29 +1,31 @@
-<div class="movie-container">
+<div>
 
   @if (loading()) {
-    <div class="loading">
+    <div>
       Filmler yükleniyor...
     </div>
   }
 
   @if (error()) {
-    <div class="error">
+    <div>
       {{ error() }}
     </div>
   }
  
 
   @if (!loading() && movies().length > 0) {
-    <div class="movie-list">
+    <div class="flex flex-wrap gap-4">
       @for (movie of movies(); track movie.imdb_url) {
-        <div class="movie-card">
-          <img [src]="movie.poster" [alt]="movie.title" class="movie-poster">
-          <div class="movie-info">
-            <h3>{{ movie.title }}</h3>
-            <p>Yıl: {{ movie.year }}</p>
-            <p>Puan: {{ movie.rank }}</p>
-            <p>Oyuncular: {{ movie.actors }}</p>
-            <a [href]="movie.imdb_url" target="_blank" rel="noopener noreferrer">IMDB'de Gör</a>
+        <div class="border-4 border-lime rounded-lg p-1 m-1 
+        hover:border-forest hover:border-opacity-75 hover:-translate-y-1 w-max flex gap-1">
+          <img [src]="movie.poster" [alt]="movie.title" class="w-48 h-auto rounded-lg border-4 border-white">
+          <div class="border-2 border-lilac rounded bg-mint w-48 p-2 font-bold text-forest ">
+            <h3 class="font-extrabold text-2xl pr-2 text-forest text-center m-2 ">{{ movie.title }}</h3>
+            <p class="italic text-center ">Yıl: {{ movie.year }}</p>
+            <p class="text-center">Puan: {{ movie.rank }}</p>
+            <p class="pt-2 whitespace-normal font-light p-2 ">Oyuncular: {{ movie.actors }}</p>
+            <a [href]="movie.imdb_url" target="_blank" rel="noopener noreferrer" 
+            class="border-2 border-lime rounded  bg-yellow-500 text-black p-2 m-1 hover:bg-opacity-50  ">IMDB'de Gör</a>
           </div>
         </div>
       }
@@ -32,7 +34,7 @@
 
   @if (!loading() && movies().length === 0 && !error()) {
     
-    <div class="no-results">
+    <div class="border-2 border-lime rounded-lg bg-blue-250 text-center">
       Film arayın...
     </div>
   }

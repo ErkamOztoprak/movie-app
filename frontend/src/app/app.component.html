@@ -1,30 +1,35 @@
-<div class="app-container">
-  <header class="header">
-    <div class="header-content">
-      <h1 class="logo">🎬 Film Arama Motoru</h1>
-      <p class="subtitle">Milyonlarca filmi keşfedin</p>
+<div class="p-6 bg-lavender">
+  <header class="border-4 border-forest rounded-xl px-4 py-3 bg-mint shadow-sm">
+    <div class="flex flex-col items-center text-2xl  ">
+      <h1 class="my-4 mr-36 text-6xl text-forest font-mono font-bold ">🎬 Film Arama Motoru</h1>
+      <p class="mr-72 mb-2 italic text-forest text-md ">Milyonlarca filmi keşfedin</p>
     </div>
   </header>
 
-  <div class="search-section">
-    <div class="search-container">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input #myInput
+  <div >
+    <div>
+      <div class="flex justify-center px-4 mt-10">
+        <span class="px-2 py-4 ">🔍</span>
+        <input
+          #myInput
           (input)="onSearch(myInput.value)"
           type="text"
-          class="search-input"
-          placeholder="Film adı yazın... (örn: The Matrix, Inception)">
+          placeholder="Film adı yazın... (örn: The Matrix, Inception)"
+          class=" text-lg text-champagne w-full max-w-md px-4 py-2 border rounded-lg 
+          italic border-2 border-lime focus:outline-none focus:ring-2  
+          hover:border-sage"
+          
+        />
       </div>
-      <p class="search-hint">En sevdiğiniz filmleri arayın ve keşfedin</p>
+      <p class=" p-2 flex justify-center text-forest text-sm opacity-50 font-bold italic">En sevdiğiniz filmleri arayın ve keşfedin</p>
     </div>
   </div>
 
-  <main class="main-content">
+  <main>
     <app-movie-list></app-movie-list>
   </main>
 
-  <footer class="footer">
+  <footer>
     <p>Film verileri IMDB API'den alınmaktadır</p>
     <p>© 2026 Film Arama Uygulaması</p>
   </footer>
