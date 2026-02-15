@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable,throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Movie } from '../movie.model';
@@ -29,7 +29,7 @@ export class MovieService {
   
   constructor(private http: HttpClient) { } 
 
-  private apiUrl='https://imdb.iamidiotareyoutoo.com/search';
+  private apiUrl = 'https://imdb.iamidiotareyoutoo.com/search';
   private searchTerm = new BehaviorSubject<string>('');
   private artHouseMovies = [
     // Rus Sineması
@@ -102,8 +102,9 @@ export class MovieService {
     return this.searchTerm.asObservable();
   }
 
-  searchMovies(query:string):Observable<Movie[]>{
-  return this.http.get<MovieApiResponse>(`${this.apiUrl}?q=${query}`).pipe(map(response=>{
+  searchMovies(query: string): Observable<Movie[]> {
+  const params = new HttpParams().set('q', query);
+  return this.http.get<MovieApiResponse>(this.apiUrl, { params }).pipe(map(response=>{
     if(!response.ok || !response.description){
       return[];
     }
