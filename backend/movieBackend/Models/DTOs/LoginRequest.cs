@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
-
+namespace movieBackend.Models.DTOs;
 public class LoginRequest
 {
     
     public required string Email{get;set;}
     
-    public required int Password{get;set;}
+    public required string Password{get;set;}
 }

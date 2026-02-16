@@ -1,4 +1,6 @@
 using System.Globalization;
+namespace movieBackend.Models.DTOs;
+
 
 public class RegisterRequest
 {
