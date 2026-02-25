@@ -7,7 +7,7 @@ namespace movieBackend.Models
     public class RefreshToken
     {   
         [Key]
-        public  int Id {get;set;}
+        public int Id {get;set;}
         public int UserId {get;set;}
         public required string TokenHash {get; set;}
         public DateTime ExpiresAt{get;set;}

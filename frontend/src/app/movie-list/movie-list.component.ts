@@ -1,7 +1,6 @@
 import { Component,signal, OnInit } from '@angular/core';
 import {MovieService} from '../services/movie.service';
 import { Movie } from '../movie.model';
-
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 

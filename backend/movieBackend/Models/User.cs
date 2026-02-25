@@ -12,8 +12,6 @@ namespace movieBackend.Models
         public int FailedLoginAttempts{get;set;}=0;
         public DateTime? LockoutEndDate{get;set;} 
 
-
-
     }
     
 }

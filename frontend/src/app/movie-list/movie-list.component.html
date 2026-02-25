@@ -14,7 +14,7 @@
  
 
   @if (!loading() && movies().length > 0) {
-    <div class="flex flex-wrap gap-4 ">
+    <div class="pl-14 flex flex-wrap gap-4 ">
       @for (movie of movies(); track movie.imdb_url) {
         <div class="border-4 border-lime-dark rounded-xl m-0.25 
         hover:border-forest-dark hover:border-opacity-75 hover:-translate-y-1 w-max flex gap-1 transition">

@@ -51,7 +51,8 @@ public class AuthService: IAuthService
         };
 
         _db.Users.Add(newUser);
-
+        await _db.SaveChangesAsync();
+        
         var accesToken =GenerateAccessToken(newUser);
         var refreshToken=GenerateRefreshToken();
         var tokenHash = BCrypt.Net.BCrypt.HashPassword(refreshToken);
