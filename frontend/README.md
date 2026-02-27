@@ -1,8 +1,8 @@
 # Movie App Frontend 🎬
 
-Angular 21 ve Tailwind CSS kullanılarak geliştirilen modern responsive web uygulaması. Kullanıcı kimlik doğrulama, film listesi ve dinamik sayfa yönetimi.
+Modern, responsive web application built with Angular 21 and Tailwind CSS. Provides user authentication, movie listing, and dynamic page management.
 
-## Hızlı Başlangıç
+## Quick Start
 
 ```bash
 cd movie-app/frontend
@@ -12,43 +12,43 @@ npm start
 
 Frontend: `http://localhost:4200`
 
-## İçindekiler
+## Table of Contents
 
-- [Özellikler](#özellikler)
-- [Teknoloji Stack](#teknoloji-stack)
-- [Kurulum](#kurulum)
-- [Konfigürasyon](#konfigürasyon)
-- [Yapı](#yapı)
-- [Geliştirme](#geliştirme)
-- [Build ve Deployment](#build-ve-deployment)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Structure](#structure)
+- [Development](#development)
+- [Build and Deployment](#build-and-deployment)
 
-## Özellikler
+## Features
 
-🎨 **Modern Arayüz**
-- Responsive tasarım (desktop, tablet, mobile)
-- Tailwind CSS ile hızlı styling
-- Angular Material bileşenleri
+🎨 **Modern UI**
+- Responsive design (desktop, tablet, mobile)
+- Fast styling with Tailwind CSS
+- Angular Material components
 
-🔐 **Kimlik Doğrulama**
-- Kullanıcı kayıt sayfası
-- Giriş sistemi
-- JWT tabanlı yetkilendirme
-- Token yönetimi
+🔐 **Authentication**
+- User registration page
+- Login system
+- JWT-based authorization
+- Token management
 
-🎥 **Film Yönetimi**
-- Film listesi görüntüleme
-- Arama ve filtreleme
+🎥 **Movie Management**
+- Browse movie listings
+- Search and filtering
 - Responsive grid layout
 
 📱 **Responsive Design**
-- Mobile-first yaklaşım
-- Tablet optimizasyonu
-- Desktop deneyimi
+- Mobile-first approach
+- Tablet optimization
+- Desktop experience
 
-## Teknoloji Stack
+## Technology Stack
 
 - **Framework**: Angular 21.1.3
-- **Dil**: TypeScript 5.9
+- **Language**: TypeScript 5.9
 - **Styling**: Tailwind CSS 3.4
 - **CSS**: PostCSS, Autoprefixer
 - **Build Tool**: Angular CLI + Vite
@@ -58,33 +58,33 @@ Frontend: `http://localhost:4200`
 - **Routing**: Angular Router
 - **Deployment**: Firebase Hosting
 
-## Kurulum
+## Installation
 
-### Gereksinimler
+### Requirements
 
 - Node.js v18+
 - npm v9+
 - Git
 
-### Adımlar
+### Steps
 
 ```bash
-# Repository'i klonlayın
+# Clone repository
 git clone https://github.com/yourusername/movie-app.git
 cd movie-app/frontend
 
-# Bağımlılıkları yükleyin
+# Install dependencies
 npm install
 
-# Geliştirme sunucusunu çalıştırın
+# Start development server
 npm start
 ```
 
-## Konfigürasyon
+## Configuration
 
-### API Endpoint Yapılandırması
+### API Endpoint Configuration
 
-`src/environments/environment.ts` dosyasını oluşturun:
+Create `src/environments/environment.ts`:
 
 ```typescript
 export const environment = {
@@ -93,7 +93,7 @@ export const environment = {
 };
 ```
 
-`src/environments/environment.prod.ts` dosyasını oluşturun:
+Create `src/environments/environment.prod.ts`:
 
 ```typescript
 export const environment = {
@@ -102,50 +102,50 @@ export const environment = {
 };
 ```
 
-### Tailwind CSS Yapılandırması
+### Tailwind CSS Configuration
 
-`tailwind.config.cjs` zaten yapılandırılmıştır.
+`tailwind.config.cjs` is already configured.
 
 ### Angular Configuration
 
-`angular.json` dosyası proje ayarlarını içerir.
+`angular.json` contains project settings.
 
-## Yapı
+## Structure
 
 ```
 frontend/
 ├── src/
 │   ├── app/
 │   │   ├── components/
-│   │   │   ├── home-page/               # Ana sayfa
+│   │   │   ├── home-page/               # Home page
 │   │   │   │   ├── home-page.ts
 │   │   │   │   ├── home-page.html
 │   │   │   │   └── home-page.css
-│   │   │   ├── login-page/              # Giriş sayfası
+│   │   │   ├── login-page/              # Login page
 │   │   │   │   ├── login-page.ts
 │   │   │   │   ├── login-page.html
 │   │   │   │   └── login-page.css
-│   │   │   ├── register-page/           # Kayıt sayfası
+│   │   │   ├── register-page/           # Registration page
 │   │   │   │   ├── register-page.ts
 │   │   │   │   ├── register-page.html
 │   │   │   │   └── register-page.css
-│   │   │   └── movie-list/              # Film listesi
+│   │   │   └── movie-list/              # Movie list
 │   │   │       ├── movie-list.ts
 │   │   │       ├── movie-list.html
 │   │   │       └── movie-list.css
 │   │   ├── services/
-│   │   │   ├── movie.service.ts         # API iletişimi
-│   │   │   ├── auth.service.ts          # Kimlik doğrulama
+│   │   │   ├── movie.service.ts         # API communication
+│   │   │   ├── auth.service.ts          # Authentication
 │   │   │   └── *.spec.ts
 │   │   ├── models/
-│   │   │   └── movie.model.ts           # Veri modelleri
-│   │   ├── app.component.ts             # Kök bileşen
-│   │   ├── app.routes.ts                # Yönlendirme
+│   │   │   └── movie.model.ts           # Data models
+│   │   ├── app.component.ts             # Root component
+│   │   ├── app.routes.ts                # Routing
 │   │   └── app.component.html
-│   ├── main.ts                          # Giriş noktası
+│   ├── main.ts                          # Entry point
 │   ├── index.html
-│   └── styles.css                       # Global stiller
-├── angular.json                         # Angular CLI yapılandırması
+│   └── styles.css                       # Global styles
+├── angular.json                         # Angular CLI configuration
 ├── tailwind.config.cjs
 ├── postcss.config.js
 ├── tsconfig.json
@@ -153,74 +153,74 @@ frontend/
 └── README.md
 ```
 
-## Geliştirme
+## Development
 
-### Development Sunucusu
+### Development Server
 
 ```bash
 npm start
 ```
 
-Uygulama otomatik olarak yeniden yüklenir: `http://localhost:4200`
+Application auto-reloads on changes: `http://localhost:4200`
 
-### Angular CLI Komutları
+### Angular CLI Commands
 
 ```bash
-# Yeni bileşen oluştur
+# Generate new component
 ng generate component components/my-component
 
-# Yeni service oluştur
+# Generate new service
 ng g service services/my-service
 
-# Yeni module oluştur
+# Generate new module
 ng g module modules/my-module
 
-# Lint kontrol
+# Lint check
 ng lint
 ```
 
-## Bileşenler
+## Components
 
 ### home-page
 
-Ana sayfa bileşeni.
+Home page component.
 
 ```typescript
 export class HomePage implements OnInit {
-  // Tahmin ve film listesi mantığı
+  // Home page logic
 }
 ```
 
 ### login-page
 
-Kullanıcı giriş formu.
+User login form.
 
 ```typescript
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
-  // Giriş mantığı
+  // Login logic
 }
 ```
 
 ### register-page
 
-Kullanıcı kayıt formu.
+User registration form.
 
 ```typescript
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
-  // Kayıt mantığı
+  // Registration logic
 }
 ```
 
 ### movie-list
 
-Film listesi görüntüleme.
+Movie listing display.
 
 ```typescript
 export class MovieListComponent implements OnInit {
   movies$: Observable<Movie[]>;
-  // Film yönetimi
+  // Movie management
 }
 ```
 
@@ -228,7 +228,7 @@ export class MovieListComponent implements OnInit {
 
 ### MovieService
 
-Film verilerini API'dan getirir.
+Fetch movie data from API.
 
 ```typescript
 export class MovieService {
@@ -240,7 +240,7 @@ export class MovieService {
 
 ### AuthService
 
-Kullanıcı kimlik doğrulaması ve token yönetimi.
+User authentication and token management.
 
 ```typescript
 export class AuthService {
@@ -253,7 +253,7 @@ export class AuthService {
 
 ## Routing
 
-`app.routes.ts` dosyası yonlendirmeleri tanımlar:
+`app.routes.ts` defines application routes:
 
 ```typescript
 export const routes: Routes = [
@@ -264,9 +264,9 @@ export const routes: Routes = [
 ];
 ```
 
-## Form Yönetimi
+## Form Management
 
-Reactive Forms kullanılır:
+Uses Reactive Forms:
 
 ```typescript
 this.form = this.fb.group({
@@ -275,9 +275,9 @@ this.form = this.fb.group({
 });
 ```
 
-## HTTP İstekleri
+## HTTP Requests
 
-HttpClient ile API çağrıları:
+API calls via HttpClient:
 
 ```typescript
 this.http.post<LoginResponse>(
@@ -290,21 +290,21 @@ this.http.post<LoginResponse>(
 
 ## Testing
 
-### Unit Testler
+### Unit Tests
 
 ```bash
 npm test
 ```
 
-Test dosyaları: `*.spec.ts`
+Test files: `*.spec.ts`
 
-### E2E Testler
+### E2E Tests
 
 ```bash
 npm run e2e
 ```
 
-## Build ve Deployment
+## Build and Deployment
 
 ### Production Build
 
@@ -317,26 +317,26 @@ Output: `dist/movie-app/`
 ### Firebase Deployment
 
 ```bash
-# Firebase CLI yükleyin
+# Install Firebase CLI
 npm install -g firebase-tools
 
-# Firebase'e giriş yapın
+# Login to Firebase
 firebase login
 
-# Deploy edin
+# Deploy
 firebase deploy
 ```
 
-### Build Optimizasyonları
+### Build Optimizations
 
 - Tree-shaking
 - Code splitting
 - Minification
 - AOT compilation
 
-## Environment Değişkenleri
+## Environment Variables
 
-`.env` dosyası oluşturun:
+Create `.env` file:
 
 ```env
 API_URL=http://localhost:5000
@@ -346,84 +346,84 @@ VERSION=1.0.0
 
 ## Styling
 
-### Tailwind CSS Sınıfları
+### Tailwind CSS Classes
 
 ```html
 <div class="flex items-center justify-between p-4 bg-gray-100 rounded-lg">
-  <h1 class="text-2xl font-bold text-gray-900">Film Listesi</h1>
+  <h1 class="text-2xl font-bold text-gray-900">Movie List</h1>
   <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-    Ekle
+    Add
   </button>
 </div>
 ```
 
-### Global Stiller
+### Global Styles
 
-`src/styles.css` dosyasında tanımlanır:
+Defined in `src/styles.css`:
 
 ```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom stiller */
+/* Custom styles */
 ```
 
-## Performans
+## Performance
 
 ### Best Practices
 
-- OnPush change detection kullanın
-- RxJS unsubscribe işlemini yönetin
-- Lazy loading uygulayın
-- Images optimizasyonu
-- Bundle size kontrol
+- Use OnPush change detection
+- Manage RxJS subscriptions
+- Implement lazy loading
+- Optimize images
+- Monitor bundle size
 
-### Lighthouse Hedefler
+### Lighthouse Targets
 
 - Performance: 90+
 - Accessibility: 95+
 - Best Practices: 95+
 - SEO: 95+
 
-## Sorun Giderme
+## Troubleshooting
 
-### CORS Hatası
+### CORS Error
 ```
 Access to XMLHttpRequest blocked
 ```
-**Çözüm:** Backend CORS ayarlarını kontrol edin
+**Solution:** Check backend CORS settings
 
-### Module Bulunamadı
+### Module Not Found
 ```
 Cannot find module '@angular/...'
 ```
-**Çözüm:** `npm install` çalıştırın
+**Solution:** Run `npm install`
 
-### Build Hatası
+### Build Error
 ```
 NG6001: This declaration is not an Angular component
 ```
-**Çözüm:** Bileşeni NgModule'e veya standalone olarak tanımlayın
+**Solution:** Declare component in NgModule or mark as standalone
 
-## Browser Uyumluluğu
+## Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## Katkıda Bulunma
+## Contributing
 
-1. Branch oluşturun (`git checkout -b feature/amazing-feature`)
-2. Değişiklikleri commit edin (`git commit -m 'Add amazing feature'`)
-3. Branch'ı push edin (`git push origin feature/amazing-feature`)
-4. Pull Request açın
+1. Create a branch (`git checkout -b feature/amazing-feature`)
+2. Commit changes (`git commit -m 'Add amazing feature'`)
+3. Push branch (`git push origin feature/amazing-feature`)
+4. Open a Pull Request
 
-## Lisans
+## License
 
-Bu proje MIT Lisansı altında lisanslanmıştır.
+This project is licensed under the MIT License.
 
 ---
 
-**Sorular ve Destek için GitHub Issues açın!**
+**For questions and support, please open an issue on GitHub!**

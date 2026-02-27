@@ -1,8 +1,8 @@
 # Movie App Backend 🎬
 
-ASP.NET Core 10 tabanlı RESTful API uygulaması. JWT tabanlı kimlik doğrulama, SQLite veritabanı ve Entity Framework Core kullanarak film uygulaması için backend hizmetleri sağlar.
+RESTful API built with ASP.NET Core 10. Provides authentication services, JWT token management, and SQLite database integration with Entity Framework Core for the Movie Application.
 
-## Hızlı Başlangıç
+## Quick Start
 
 ```bash
 cd movie-app/backend/movieBackend
@@ -12,61 +12,61 @@ dotnet run
 
 Backend: `https://localhost:5001`
 
-## İçindekiler
+## Table of Contents
 
-- [Özellikler](#özellikler)
-- [Teknoloji Stack](#teknoloji-stack)
-- [Kurulum](#kurulum)
-- [Konfigürasyon](#konfigürasyon)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Configuration](#configuration)
 - [API Endpoints](#api-endpoints)
-- [Veritabanı](#veritabanı)
-- [Geliştirme](#geliştirme)
+- [Database](#database)
+- [Development](#development)
 
-## Özellikler
+## Features
 
-✨ **Kimlik Doğrulama**
-- Kayıt ve giriş sistemi
-- JWT token tabanlı yetkilendirme
-- Token yenileme mekanizması
-- Güvenli çıkış
+✨ **Authentication**
+- User registration and login
+- JWT token-based authorization
+- Token refresh mechanism
+- Secure logout
 
-🔐 **Güvenlik**
-- BCrypt şifre şifrelemesi
-- JWT token validasyonu
-- CORS koruması
-- Secure token mekanizması
+🔐 **Security**
+- BCrypt password encryption
+- JWT token validation
+- CORS protection
+- Secure token management
 
-## Teknoloji Stack
+## Technology Stack
 
 - **Framework**: ASP.NET Core 10
-- **Dil**: C#
-- **Veritabanı**: SQLite
+- **Language**: C#
+- **Database**: SQLite
 - **ORM**: Entity Framework Core 10
-- **Kimlik Doğrulama**: JWT Bearer Tokens
-- **Şifreleme**: BCrypt.Net-Next 4.0.3
+- **Authentication**: JWT Bearer Tokens
+- **Encryption**: BCrypt.Net-Next 4.0.3
 
-## Kurulum
+## Installation
 
-### Gereksinimler
+### Requirements
 
-- .NET SDK 10 veya üstü
-- Visual Studio veya VS Code
+- .NET SDK 10 or higher
+- Visual Studio or VS Code
 
-### Adımlar
+### Steps
 
 ```bash
-# Repository'i klonlayın
+# Clone the repository
 git clone https://github.com/yourusername/movie-app.git
 cd movie-app/backend/movieBackend
 
-# Bağımlılıkları yükleyin
+# Restore dependencies
 dotnet restore
 
-# Uygulamayı çalıştırın
+# Run the application
 dotnet run
 ```
 
-## Konfigürasyon
+## Configuration
 
 ### appsettings.json
 
@@ -95,9 +95,9 @@ dotnet run
 }
 ```
 
-### CORS Ayarları
+### CORS Settings
 
-`Program.cs` içinde frontend URL'si eklenmiştir:
+Frontend URL is configured in `Program.cs`:
 
 ```csharp
 policy.WithOrigins(
@@ -108,25 +108,25 @@ policy.WithOrigins(
 
 ## API Endpoints
 
-### 🔓 Kimlik Doğrulama (Açık Endpoint)
+### 🔓 Authentication (Public Endpoints)
 
-| Method | Endpoint | Açıklama |
-|--------|----------|---------|
-| POST | `/auth/register` | Yeni kullanıcı kaydı |
-| POST | `/auth/login` | Kullanıcı girişi |
-| POST | `/auth/refresh` | Token yenileme |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register new user |
+| POST | `/auth/login` | User login |
+| POST | `/auth/refresh` | Refresh token |
 
-### 🔐 Kimlik Doğrulama (Korumalı Endpoint)
+### 🔐 Authentication (Protected Endpoints)
 
-| Method | Endpoint | Açıklama |
-|--------|----------|---------|
-| POST | `/auth/logout` | Kullanıcı çıkışı |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/logout` | User logout |
 
-## İstek/Yanıt Örnekleri
+## Request/Response Examples
 
-### Kayıt (Register)
+### Register
 
-**İstek:**
+**Request:**
 ```json
 POST /auth/register
 {
@@ -136,7 +136,7 @@ POST /auth/register
 }
 ```
 
-**Başarılı Yanıt (200):**
+**Success Response (200):**
 ```json
 {
   "message": "Registration successful",
@@ -148,9 +148,9 @@ POST /auth/register
 }
 ```
 
-### Giriş (Login)
+### Login
 
-**İstek:**
+**Request:**
 ```json
 POST /auth/login
 {
@@ -159,7 +159,7 @@ POST /auth/login
 }
 ```
 
-**Başarılı Yanıt (200):**
+**Success Response (200):**
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -173,9 +173,9 @@ POST /auth/login
 }
 ```
 
-### Token Yenileme (Refresh)
+### Refresh Token
 
-**İstek:**
+**Request:**
 ```json
 POST /auth/refresh
 {
@@ -183,7 +183,7 @@ POST /auth/refresh
 }
 ```
 
-**Başarılı Yanıt (200):**
+**Success Response (200):**
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -192,9 +192,9 @@ POST /auth/refresh
 }
 ```
 
-### Çıkış (Logout)
+### Logout
 
-**İstek:**
+**Request:**
 ```json
 POST /auth/logout
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
@@ -203,29 +203,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 }
 ```
 
-**Başarılı Yanıt (200):**
+**Success Response (200):**
 ```json
 {
   "message": "Logged out successfully"
 }
 ```
 
-## Hata Kodları
+## HTTP Status Codes
 
-| Kod | Açıklama |
-|-----|---------|
-| 200 | Başarılı işlem |
-| 400 | Hatalı istek |
-| 401 | Yetkilendirilemedi |
-| 403 | Yasaklandı |
-| 404 | Bulunamadı |
-| 500 | Server hatası |
+| Code | Description |
+|------|-------------|
+| 200 | Success |
+| 400 | Bad request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Not found |
+| 500 | Server error |
 
-## Veritabanı
+## Database
 
-### Şema
+### Schema
 
-**Users Tablosu:**
+**Users Table:**
 - Id (GUID)
 - Username (string, unique)
 - Email (string, unique)
@@ -233,7 +233,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 - CreatedAt (DateTime)
 - UpdatedAt (DateTime)
 
-**RefreshTokens Tablosu:**
+**RefreshTokens Table:**
 - Id (GUID)
 - UserId (GUID, foreign key)
 - Token (string)
@@ -241,20 +241,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 - IsRevoked (bool)
 - CreatedAt (DateTime)
 
-### Veritabanı Oluşturma
+### Database Setup
 
 ```bash
-# Migrations uygulamak için
+# Apply migrations
 dotnet ef database update
 
-# Veritabanını sıfırlamak için
+# Reset database
 dotnet ef database drop
 dotnet ef database update
 ```
 
-## Geliştirme
+## Development
 
-### Proje Yapısı
+### Project Structure
 
 ```
 movieBackend/
@@ -270,26 +270,26 @@ movieBackend/
 │       ├── RefreshRequest.cs
 │       └── RegisterRequest.cs
 ├── Services/
-│   ├── AuthService.cs               # İş mantığı
-│   ├── IAuthService.cs              # Arayüz
-│   └── PasswordService.cs            # Şifre hizmetleri
-├── Program.cs                        # Uygulama yapılandırması
+│   ├── AuthService.cs               # Business logic
+│   ├── IAuthService.cs              # Interface
+│   └── PasswordService.cs            # Password services
+├── Program.cs                        # Application setup
 └── movieBackend.csproj
 ```
 
-### Çalıştırma
+### Running
 
-**Debug Modu:**
+**Debug Mode:**
 ```bash
 dotnet run
 ```
 
-**Release Modu:**
+**Release Mode:**
 ```bash
 dotnet run --configuration Release
 ```
 
-**Watch Modu (dosya değişikliklerinde otomatik yeniden başla):**
+**Watch Mode (auto-restart on file changes):**
 ```bash
 dotnet watch run
 ```
@@ -300,53 +300,49 @@ dotnet watch run
 dotnet publish -c Release -o ./publish
 ```
 
-### Logging ve Debugging
+### Testing API Calls
 
-API çağrılarını test etmek için `movieBackend.http` dosyasını kullanın:
+Use the `movieBackend.http` file to test API endpoints.
 
-```bash
-# movieBackend.http dosyasında tanımlı istekleri çalıştırın
-```
+## Security Best Practices
 
-## Güvenlik Best Practices
+✅ **Implemented:**
+- JWT token validation
+- BCrypt password encryption
+- CORS protection
+- Refresh token mechanism
 
-✅ **Uygulanmış:**
-- JWT token validasyonu
-- BCrypt şifre şifrelemesi
-- CORS koruması
-- Refresh token mekanizması
+⚠️ **Recommendations:**
+- Use strong secret keys in production
+- Enforce HTTPS
+- Implement rate limiting
+- Set shorter token expiration times
+- Disable sensitive logging in production
 
-⚠️ **Öneriler:**
-- Production'da güçlü secret key kullanın
-- HTTPS zorunlu hale getirin
-- Rate limiting ekleyin
-- Token expiration sürelerini kısaltın
-- Sensitive logları devre dışı bırakın
+## Troubleshooting
 
-## Sorun Giderme
-
-### CORS Hatası
+### CORS Error
 ```
 Access to XMLHttpRequest blocked
 ```
-**Çözüm:** `Program.cs` içindeki CORS policy'i kontrol edin, frontend URL'si eklenmiş mi?
+**Solution:** Check CORS policy in `Program.cs`, ensure frontend URL is added
 
-### JWT Hatası
+### JWT Error
 ```
 Invalid token
 ```
-**Çözüm:** 
-- Jwt:Key'in aynı olduğunu kontrol edin
-- Token expiration süresi kontrol edin
-- Token format kontrolü (Bearer eyJ...)
+**Solution:**
+- Verify Jwt:Key is the same
+- Check token expiration
+- Validate token format (Bearer eyJ...)
 
-### Veritabanı Bağlantı Hatası
+### Database Connection Error
 ```
 Unable to connect to database
 ```
-**Çözüm:**
-- `appsettings.json` içindeki connection string kontrolü
-- `movie.db` dosyasının izinlerini kontrol edin
+**Solution:**
+- Check connection string in `appsettings.json`
+- Verify `movie.db` file permissions
 
 ## Deployment
 
@@ -354,7 +350,7 @@ Unable to connect to database
 
 ```bash
 dotnet publish -c Release
-# Publish edilen dosyaları Azure'a upload edin
+# Upload published files to Azure
 ```
 
 ### Docker
@@ -372,23 +368,23 @@ EXPOSE 80
 ENTRYPOINT ["dotnet", "movieBackend.dll"]
 ```
 
-Build ve çalıştır:
+Build and run:
 ```bash
 docker build -t movie-app-backend .
 docker run -p 5000:80 movie-app-backend
 ```
 
-## Katkıda Bulunma
+## Contributing
 
-1. Branch oluşturun (`git checkout -b feature/amazing-feature`)
-2. Değişiklikleri commit edin (`git commit -m 'Add amazing feature'`)
-3. Branch'ı push edin (`git push origin feature/amazing-feature`)
-4. Pull Request açın
+1. Create a branch (`git checkout -b feature/amazing-feature`)
+2. Commit changes (`git commit -m 'Add amazing feature'`)
+3. Push branch (`git push origin feature/amazing-feature`)
+4. Open a Pull Request
 
-## Lisans
+## License
 
-Bu proje MIT Lisansı altında lisanslanmıştır.
+This project is licensed under the MIT License.
 
 ---
 
-**Sorular ve Destek için GitHub Issues açın!**
+**For questions and support, please open an issue on GitHub!**
