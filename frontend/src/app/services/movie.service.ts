@@ -3,21 +3,19 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable,throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Movie } from '../movie.model';
-import { BehaviorSubject } from 'rxjs';
-import { forkJoin } from 'rxjs';
-
+import { BehaviorSubject,forkJoin } from 'rxjs';
 
 interface MovieApiResponse {
-  ok: boolean;
-  description: any[];
-  short:any;
-  imdbId:number;
-  name:string;
-  datePublished:Date;
-  aggregateRating:number;
-  actors:string;
-  posters:string;
-  imdb_url:string;
+  Search?: OmdbMovie[];
+  Response: string;
+  Error?: string;
+}
+interface OmdbMovie{
+  imdbID:string;
+  Title: string;
+  Year:string;
+  Poster: string;
+  Type:string;
 }
 
 
@@ -25,11 +23,10 @@ interface MovieApiResponse {
   providedIn: 'root',
 })
 export class MovieService {
+ 
+  constructor(private http: HttpClient) {} 
 
-  
-  constructor(private http: HttpClient) { } 
-
-  private apiUrl = 'https://imdb.iamidiotareyoutoo.com/search';
+  private apiUrl = '/api/ombd';
   private searchTerm = new BehaviorSubject<string>('');
   private artHouseMovies = [
     // Rus Sineması
@@ -77,25 +74,28 @@ export class MovieService {
   }
 
   getdefaultMovies():Observable<Movie[]>{
-    const urls = this.artHouseMovies.map(id => `${this.apiUrl}?tt=${id}`);
-    const request = urls.map(url => this.http.get<MovieApiResponse>(url));
+    const request = this.artHouseMovies.map(id=>
+      this.http.get<any>(`${this.apiUrl}/movie/${id}`)
+    );
     
     return forkJoin(request).pipe(
       map(response=>{
         return response
-        .map(r=>r.short)
-        .filter(Boolean)
-        .map(s=>({
-          imdb_id: s.imdbId,
-          title: s.name,
-          year: s.datePublished?.slice(0,4),
-          rank: s.aggregateRating?.ratingValue,
-          actors:(s.actor || []).map((a:any)=>a.name).join(','),
-          poster: s.image,
-          imdb_url:s.url
+        .filter(r=>r.Response ==='True')
+        .map(r=>({
+          imdb_id: r.imdbID,
+          title: r.Title,
+          year: r.Year,
+          rank: Number(r.imdbRating) || 0 ,
+          actors:r.Actors ?? '',
+          poster: r.Poster,
+          imdb_url:`https://www.imdb.com/title/${r.imdbID}/` 
         }));
+      }),
+      catchError(error=>{console.error('error fetching default movies:',error);
+        return throwError(()=>error);
       })
-    )
+    );
   }
  
   getSearchTerm(): Observable<string> {
@@ -103,21 +103,20 @@ export class MovieService {
   }
 
   searchMovies(query: string): Observable<Movie[]> {
-  const params = new HttpParams().set('q', query);
-  return this.http.get<MovieApiResponse>(this.apiUrl, { params }).pipe(map(response=>{
-    if(!response.ok || !response.description){
+  const params = new HttpParams().set('q',query);
+
+  return this.http.get<MovieApiResponse>(`${this.apiUrl}/search`, { params }).pipe(map(response=>{
+    if(response.Response==='False'|| !response.Search){
       return[];
     }
-    return response.description.map((item: any)=>({
-      imdb_id: item['#IMDB_ID'],
-      title: item['#TITLE'],
-      year: item['#YEAR'],
-      rank: item['#RANK'],
-      actors: item['#ACTORS'],
-      poster: item['#IMG_POSTER'],
-      imdb_url: item['#IMDB_URL']
-
-
+    return response.Search.map((item):Movie=>({
+      imdb_id: item.imdbID,
+      title: item.Title,
+      year: Number(item.Year),
+      rank: 0,
+      actors: '',
+      poster: item.Poster,
+      imdb_url: `https://www.imdb.com/title/${item.imdbID}/`
     }));
   }),
   catchError(error=>{

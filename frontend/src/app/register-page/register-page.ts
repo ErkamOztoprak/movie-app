@@ -23,12 +23,7 @@ export class RegisterPage {
   private baseUrl:string='https://localhost:4200/auth';
   
   constructor(private http:HttpClient ){  }
-
-  login(username:string,password:string):Observable<string>{
-    const params={username,password};
-    return this.http.post(this.baseUrl +'/login',{},{params,responseType:'text'});
-  }
-
+  
   register(username:string, email:string){}
 
 }

@@ -8,11 +8,14 @@ using movieBackend.Data;
 using movieBackend.Services;
 using SQLitePCL;
 using movieBackend.Models.DTOs;
+using movieBackend.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpClient();
+builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options=>options.UseSqlite("DataSource=movie.db "));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -41,11 +44,24 @@ using(var scope = app.Services.CreateScope())
     var db=scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
 }
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); 
 app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
+app.MapGet("/api/omdb/search",async(string q, IHttpClientFactory httpFactory,IConfiguration config) =>
+{
+    var apiKey =config["Omdb:ApiKey"];
+    if(string.IsNullOrWhiteSpace(apiKey))
+        return Results.Problem("omdb api key missing");
 
+    var baseUrl =config["Omdb:BaseUrl"] ?? "https://www.omdbapi.com";
+    var url = $"{baseUrl}?apikey={Uri.EscapeDataString(apiKey)}&s={Uri.EscapeDataString(q)}&type=movie";
+
+    var http=httpFactory.CreateClient();
+    var json= await http.GetStringAsync(url);
+    return Results.Content(json,"application/json");
+});
 app.MapPost("/auth/register",async(RegisterRequest request,IAuthService authservice)=>
 {
     try
