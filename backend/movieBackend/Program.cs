@@ -49,18 +49,26 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
-app.MapGet("/api/omdb/search",async(string q, IHttpClientFactory httpFactory,IConfiguration config) =>
+
+app.MapGet("/api/movies",async(string? q,string? id, IHttpClientFactory clientFactory,IConfiguration config) =>
 {
-    var apiKey =config["Omdb:ApiKey"];
-    if(string.IsNullOrWhiteSpace(apiKey))
-        return Results.Problem("omdb api key missing");
+    var apiKey =config["OMDb:ApiKey"];
+    var client =clientFactory.CreateClient();
+    string url= "http://omdbapi.com/?apikey="+apiKey;
 
-    var baseUrl =config["Omdb:BaseUrl"] ?? "https://www.omdbapi.com";
-    var url = $"{baseUrl}?apikey={Uri.EscapeDataString(apiKey)}&s={Uri.EscapeDataString(q)}&type=movie";
+    if(!string.IsNullOrEmpty(id))
+        url+=$"&i={id}";
+    else if(!string.IsNullOrEmpty(q))
+        url+=$"&s={q}";
+    
+    else
+        return Results.BadRequest("Lütfen bir film adı veya id girin");
 
-    var http=httpFactory.CreateClient();
-    var json= await http.GetStringAsync(url);
-    return Results.Content(json,"application/json");
+    var response =await client.GetAsync(url);
+    var content = await response.Content.ReadAsStringAsync();
+
+    return Results.Content(content,"application/json");
+    
 });
 app.MapPost("/auth/register",async(RegisterRequest request,IAuthService authservice)=>
 {

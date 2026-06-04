@@ -26,7 +26,7 @@ export class MovieService {
  
   constructor(private http: HttpClient) {} 
 
-  private apiUrl = '/api/ombd';
+  private BackendUrl = 'http://localhost:5063/api/movies';
   private searchTerm = new BehaviorSubject<string>('');
   private artHouseMovies = [
     // Rus Sineması
@@ -75,8 +75,7 @@ export class MovieService {
 
   getdefaultMovies():Observable<Movie[]>{
     const request = this.artHouseMovies.map(id=>
-      this.http.get<any>(`${this.apiUrl}/movie/${id}`)
-    );
+      this.http.get<any>(this.BackendUrl, { params: { id } }));
     
     return forkJoin(request).pipe(
       map(response=>{
@@ -105,7 +104,8 @@ export class MovieService {
   searchMovies(query: string): Observable<Movie[]> {
   const params = new HttpParams().set('q',query);
 
-  return this.http.get<MovieApiResponse>(`${this.apiUrl}/search`, { params }).pipe(map(response=>{
+  return this.http.get<MovieApiResponse>(this.BackendUrl, {params}).pipe(map(response=>{
+    console.log("backend verisi",response);
     if(response.Response==='False'|| !response.Search){
       return[];
     }
