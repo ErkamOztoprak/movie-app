@@ -1,54 +1,50 @@
 
-<header class="w-full shadow-md bg-mint-dark/70 backdrop-blur-sm">
-  <div class="px-6 py-4 max-w-6xl mx-auto flex justify-between items-center">
-    <h1 class="font-semibold text-xl text-forest-dark font-mono">
-      Movie App
-    </h1>
-    <div class="flex gap-4">
-      <button (click)="navigateToLogin()" class="px-4 py-2 border-2 border-gray-300 border-mint text-forest-dark rounded-lg hover:bg-lavender/50 font-mono transition"  >
+<header class="sticky top-0 z-30 w-full border-b border-lime-dark/60 shadow-lg bg-forest/95 backdrop-blur-sm text-mint">
+  <div class="px-4 sm:px-6 py-4 max-w-7xl mx-auto flex items-center justify-between gap-4">
+    <div>
+      <h1 class="font-display font-bold tracking-wide text-3xl sm:text-4xl text-mint">CineVault</h1>
+      <p class="text-xs sm:text-sm text-champagne/90 font-body tracking-wide">Curated cinema discovery experience</p>
+    </div>
+    <div class="flex gap-2 sm:gap-3">
+      <button (click)="navigateToLogin()" class="px-3 sm:px-4 py-2 border-2 border-lime text-lime rounded-lg hover:bg-lime hover:text-forest font-accent text-sm sm:text-base font-semibold tracking-wide transition">
         Login
       </button>
-      <button (click)="navigateToRegister()" class="px-4 py-2 bg-white/30 border-2 border-mint border-gray-300 text-forest-dark rounded-lg hover:bg-lavender/50 font-mono italic transition" >
+      <button (click)="navigateToRegister()" class="px-3 sm:px-4 py-2 bg-lavender border-2 border-lavender text-mint rounded-lg hover:bg-lavender-dark font-accent text-sm sm:text-base font-semibold tracking-wide transition">
         Signup
       </button>
     </div>
-    
   </div>
 </header>
-<div class="p-6 bg-lavender-dark">
-  <header class="border-4 border-lime-dark rounded-xl p-4 bg-mint shadow-med max-w-5xl mx-auto">
-    <div class="flex flex-col items-center text-center  ">
-      <h1 class="my-4 text-6xl text-forest-dark font-mono font-bold ">
-        🎬 Film Arama Motoru</h1>
-      <p class="mr-72 mb-2 italic text-forest-dark text-md ">Milyonlarca filmi keşfedin</p>
-    </div>
-  </header>
 
-  <div >
-    <div>
-      <div class="flex justify-center px-4 mt-10 ">
-        <span class="px-2 py-4 ">🔍</span>
+<div class="px-4 sm:px-6 py-6 bg-forest text-mint min-h-screen">
+  <section class="max-w-7xl mx-auto border border-lime-dark/70 rounded-2xl bg-gradient-to-br from-baby-blue-dark to-forest-dark shadow-2xl px-5 sm:px-8 py-8 sm:py-10">
+    <div class="max-w-3xl">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight text-mint">
+        Films worth your evening.
+      </h2>
+      <p class="mt-3 text-base sm:text-lg text-champagne font-body">
+        Katalogu hizlica tara, favori filmlerini bul ve tek tikla detaylara ulas.
+      </p>
+    </div>
+
+    <div class="mt-8 max-w-2xl">
+      <label for="movie-search" class="block mb-2 text-sm font-body font-semibold text-champagne tracking-wide">Search movies</label>
+      <div class="flex items-center rounded-xl border-2 border-lime-dark bg-mint/95 focus-within:ring-2 focus-within:ring-lavender focus-within:border-lavender transition">
+        <span class="px-3 text-lime text-xs sm:text-sm font-accent font-semibold uppercase tracking-wider">Find</span>
         <input
+          id="movie-search"
           #myInput
           (input)="onSearch(myInput.value)"
           type="text"
-          placeholder="Film adı yazın... (örn: The Matrix, Inception)"
-          class=" bg-mint text-lg text-mint-dark w-full max-w-md px-4 py-2 border rounded-lg 
-          italic border-2 border-lime focus:outline-none focus:ring-2  
-          hover:border-sage "
-          
+          placeholder="The Matrix, Inception, Interstellar..."
+          class="w-full bg-transparent text-base sm:text-lg text-forest font-body px-2 sm:px-3 py-3 outline-none"
         />
       </div>
-      <p class=" p-2 flex justify-center text-lavender text-sm  font-bold italic">En sevdiğiniz filmleri arayın ve keşfedin</p>
+      <p class="mt-2 text-xs sm:text-sm text-champagne/90 font-body">En iyi sonuclar icin film adini tam yazarak arat.</p>
     </div>
-  </div>
+  </section>
 
-  <main>
+  <main class="mt-8 sm:mt-10">
     <app-movie-list></app-movie-list>
   </main>
-
-  <footer>
-    <p>Film verileri IMDB API'den alınmaktadır</p>
-    <p>© 2026 Film Arama Uygulaması</p>
-  </footer>
 </div>

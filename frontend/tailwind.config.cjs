@@ -4,26 +4,36 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mint: "#E2FBE2",
-        "baby-blue": "#E2EEFB",
-        lavender: "#E2E7FB",
-        lilac: "#F0E2FB",
-        lime: "#F3FBE2",
-        champagne: "#FBF3E2",
-        forest: "#2D4A3E",
-        sage: "#5A7A6E",
+        // Requested palette
+        fume: "#1A1D20",
+        chalk: "#F8F9FA",
+        mustard: "#D4A373",
+        brick: "#E07A5F",
 
-        "mint-dark": '#1a3a2e',
-        "baby-blue-dark": '#1a2d3f',
-        'lavender-dark': '#2a2d4a',
-        'lilac-dark': '#3a2d4a',
-        'lime-dark': '#2e3a1a',
-        'champagne-dark': '#3a341a',
-        "forest-dark": '#0f1e1a',
-        'sage-dark': '#2a3f38',
+        // Backward-compatible semantic aliases used in templates
+        mint: "#F8F9FA",
+        "baby-blue": "#F8F9FA",
+        lavender: "#E07A5F",
+        lilac: "#E07A5F",
+        lime: "#D4A373",
+        champagne: "#D4A373",
+        forest: "#1A1D20",
+        sage: "#B18A63",
+
+        "mint-dark": "#1A1D20",
+        "baby-blue-dark": "#2A2E33",
+        "lavender-dark": "#C86B52",
+        "lilac-dark": "#B65E49",
+        "lime-dark": "#B3885F",
+        "champagne-dark": "#9B744F",
+        "forest-dark": "#14171A",
+        "sage-dark": "#7A6044",
       },
       fontFamily: {
-        sans: ["Arial", "Helvetica Neue", "Helvetica", "sans-serif"]
+        sans: ["Manrope", "Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
+        body: ["Manrope", "Arial", "Helvetica Neue", "Helvetica", "sans-serif"],
+        display: ["Cormorant Garamond", "Georgia", "serif"],
+        accent: ["Manrope", "Arial", "Helvetica Neue", "Helvetica", "sans-serif"]
       }
     }
   }

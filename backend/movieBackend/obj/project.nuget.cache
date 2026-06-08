@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SqQ5wa/UalU=",
+  "dgSpecHash": "oyAv1oJrUdo=",
   "success": true,
-  "projectFilePath": "C:\\2_angularApp\\movie-app\\backend\\movieBackend\\movieBackend.csproj",
+  "projectFilePath": "D:\\2_angular_app\\movie-app\\backend\\movieBackend\\movieBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Erkam\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Erkam\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

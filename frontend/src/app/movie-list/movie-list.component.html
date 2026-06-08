@@ -1,41 +1,64 @@
 <div>
 
   @if (loading()) {
-    <div>
-      Filmler yükleniyor...
+    <div class="mx-auto max-w-xl text-center border border-lime-dark/70 rounded-xl bg-baby-blue-dark/70 text-champagne py-8 px-6 font-body shadow-lg">
+      <p class="text-lg font-semibold tracking-wide">Filmler yükleniyor...</p>
+      <p class="text-sm text-mint/80 mt-2">Katalog hazırlanıyor, lütfen bekleyin.</p>
     </div>
   }
 
   @if (error()) {
-    <div>
-      {{ error() }}
+    <div class="mx-auto max-w-xl text-center border border-lavender/70 rounded-xl bg-forest-dark text-lavender py-8 px-6 font-body shadow-lg">
+      <p class="text-lg font-semibold tracking-wide">Bir hata oluştu</p>
+      <p class="text-sm mt-2">{{ error() }}</p>
     </div>
   }
  
 
   @if (!loading() && movies().length > 0) {
-    <div class="pl-14 flex flex-wrap gap-4 ">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 sm:gap-6">
       @for (movie of movies(); track movie.imdb_url) {
-        <div class="border-4 border-lime-dark rounded-xl m-0.25 
-        hover:border-forest-dark hover:border-opacity-75 hover:-translate-y-1 w-max flex gap-1 transition">
-          <img [src]="movie.poster" [alt]="movie.title" class="w-56 h-auto rounded-lg border-4 border-mint-dark">
-          <div class="border-2 border-lilac-dark rounded-lg bg-mint w-48 p-2 font-bold text-forest m-0.5">
-            <h3 class="font-extrabold text-2xl pr-2 text-forest-dark text-center m-2 overflow-hidden ">{{ movie.title }}</h3>
-            <p class="italic text-center ">Yıl: {{ movie.year }}</p>
-            <p class="text-center">Puan: {{ movie.rank }}</p>
-            <p class="pt-2 whitespace-normal font-light-dark p-2 ">Oyuncular: {{ movie.actors }}</p>
-            <a [href]="movie.imdb_url" target="_blank" rel="noopener noreferrer" 
-            class="border-2 border-lime-dark rounded  bg-yellow-500 text-black p-2 m-1 hover:bg-opacity-50  ">IMDB'de Gör</a>
+        <article class="w-full max-w-[17rem] sm:max-w-none h-full rounded-2xl overflow-hidden border border-lime-dark/70 bg-baby-blue-dark shadow-lg hover:shadow-2xl hover:-translate-y-1 hover:border-lime transition duration-300 flex flex-col justify-self-center">
+          <div class="relative">
+            <img [src]="movie.poster" [alt]="movie.title" class="w-full h-64 sm:h-80 lg:h-[24rem] object-cover">
+            <span class="absolute top-3 right-3 px-2 py-1 rounded-full bg-forest/80 text-champagne text-xs font-accent tracking-wide border border-lime-dark/60">
+              {{ movie.year }}
+            </span>
           </div>
-        </div>
+
+          <div class="p-4 bg-mint text-forest flex flex-col grow">
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-forest-dark leading-tight min-h-[3rem] sm:min-h-[4rem]">
+              {{ movie.title }}
+            </h3>
+
+            <div class="mt-3 flex items-center gap-2 flex-wrap">
+              <span class="px-2 py-1 rounded-md bg-lime/80 text-forest-dark text-xs font-accent font-semibold tracking-wide">IMDB</span>
+              <span class="px-2 py-1 rounded-md border border-lime-dark text-xs font-body font-semibold">Puan: {{ movie.rank }}</span>
+            </div>
+
+            <p class="mt-3 text-sm font-body text-forest-dark/90 min-h-[4.5rem] overflow-hidden">
+              <span class="font-semibold">Oyuncular:</span> {{ movie.actors }}
+            </p>
+
+            <a
+              [href]="movie.imdb_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-4 w-full inline-flex items-center justify-center rounded-lg border-2 border-lime-dark bg-lime text-forest-dark py-2.5 font-accent font-semibold tracking-wide hover:bg-lavender hover:text-mint transition"
+            >
+              IMDB'de Goruntule
+            </a>
+          </div>
+        </article>
       }
     </div>
   }
 
   @if (!loading() && movies().length === 0 && !error()) {
     
-    <div class=" absolute top-0 left-0 border-2 border-lime-dark rounded-lg bg-blue-250 text-center">
-      Film arayın...
+    <div class="mx-auto max-w-xl text-center border border-lime-dark/70 rounded-xl bg-baby-blue-dark/70 text-champagne py-6 px-6 font-body shadow-lg">
+      <p class="text-lg font-semibold">Film arayın...</p>
+      <p class="text-sm text-mint/80 mt-1">Arama kutusuna bir film adı yazıp keşfetmeye başlayın.</p>
     </div>
   }
 

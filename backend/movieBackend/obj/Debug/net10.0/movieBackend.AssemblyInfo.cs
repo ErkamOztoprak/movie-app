@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("60c7ca1b-2e36-44db-acb8-e193067ac24a")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("movieBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+257a000121cdbb06bb60fc4c68a2e5b359a4b5af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+501b5b6f079ca014ef4cb7ba75beeefcf38fd9f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("movieBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("movieBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
